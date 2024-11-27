@@ -1,5 +1,14 @@
 # CID-STM
 Épreuve finale | 420-514-MV COLLECTE ET INTERPRÉTATION DE DONNÉES groupe 00001
 
-#### Type de BD -- MONGODB
-#### BACKEND -- EXPRESS/TYPESCRIPT 
+#### - TYPE DE BD -- MONGODB
+#### - BACKEND -- EXPRESS/TYPESCRIPT 
+#### - FRONTEND -- REACT/TAILWIND
+
+#### MODÈLE UTILISÉ -- MVC
+## LISTE DE LIBRAIRIES: 
+  #### - FONT AWESOME
+
+
+
+## LIEN GITHUB --> https://github.com/hodux/CID-STM
