@@ -1,4 +1,4 @@
-# CID-STM
+# CID-STM-FRONTEND
 Épreuve finale | 420-514-MV COLLECTE ET INTERPRÉTATION DE DONNÉES groupe 00001
 
 #### - TYPE DE BD -- MONGODB
@@ -10,4 +10,5 @@
 
 
 
-## LIEN GITHUB --> https://github.com/hodux/CID-STM
+## LIEN BACKEND --> https://github.com/hodux/CID-STM-BACKEND
+## LIEN DATASET --> [https://github.com/hodux](https://www.stm.info/fr/a-propos/developpeurs)
