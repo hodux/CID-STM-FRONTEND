@@ -1,14 +1,17 @@
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Header from "./components/Header";
+import AppRoutes from "./routes/Routes";
+
 function App() {
   return (
-    <div className="">
-      <header className="">
-        Bienvenue dans le Travail Pratique Finale du cours Collecte et interpretation.
-      </header>
+    <Router>
       <div>
-      <button>Signin</button>
-      <button>Signup</button>
+        <Header />
+        <AppRoutes />
       </div>
-    </div>
+    </Router>
   );
 }
+
 export default App;
