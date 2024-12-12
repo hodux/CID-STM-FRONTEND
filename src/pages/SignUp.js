@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-
+import axios from 'axios';
 function Signup() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [username,setUsername]=useState("");
 
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
@@ -14,6 +15,7 @@ function Signup() {
   const [passwordVisible1, setPasswordVisible1] = useState(false);
   const [passwordVisible2, setPasswordVisible2] = useState(false);
 
+
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const validatePassword = (password) => /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password);
@@ -22,6 +24,11 @@ function Signup() {
     const inputEmail = e.target.value;
     setEmail(inputEmail);
     setEmailError(validateEmail(inputEmail) ? "" : "Please enter a valid email address.");
+  };
+
+  const handleUsernameChange = (e) => {
+    const inputUsername = e.target.value;
+    setUsername(inputUsername);
   };
 
   const handlePassword1Change = (e) => {
@@ -39,11 +46,57 @@ function Signup() {
   const togglePasswordVisibility1 = () => setPasswordVisible1(!passwordVisible1);
   const togglePasswordVisibility2 = () => setPasswordVisible2(!passwordVisible2);
 
+  const handleSubmit=async (e)=> {
+    e.preventDefault();
+    if(!validateEmail(email)){
+      setEmailError("Please enter a valid email address")
+      return ;
+    }
+    if(!validatePassword(password1)){
+      setPassword1("Please enter a valid password")
+      return ;
+    }
+    if(password1!==password2){
+      setPasswordNotMatch("Password do not match")
+      return ;
+    }
+
+    try{
+      const response =await axios.post("http://localhost:3000/api/users",
+        {
+          username:username,
+          email:email,
+          password:password1
+        });
+        console.log("Success",response.data);
+
+    }catch(error){
+      console.error("sign up failed")
+      alert("Sign up failed. Please try again")
+    }
+  }
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
         <h2 className="text-2xl font-bold text-gray-700 text-center mb-6">Create Your Account</h2>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
+
+        <div>
+            <label htmlFor="username" className="block text-sm font-medium text-gray-600 mb-1">
+              Username
+            </label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={handleUsernameChange}
+              className={`w-full px-4 py-2 border ${
+                emailError ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-blue-500"
+              } rounded-lg`}
+              placeholder="Enter your username"
+            />
+          </div>
+
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-600 mb-1">
               Email Address
