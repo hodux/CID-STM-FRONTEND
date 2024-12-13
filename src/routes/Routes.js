@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes as RouterRoutes } from "react-router-dom";
-import Home from "../pages/Home"
-import Signin from "../pages/SignIn";
-import Signup from "../pages/SignUp";
+import Home from "../Pages/Home"
+import Signin from "../Pages/SignIn";
+import Signup from "../Pages/SignUp";
 
 function AppRoutes() {
   return (
