@@ -5,7 +5,7 @@ import axios from 'axios';
 function Signup() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [username,setUsername]=useState("");
+  const [username, setUsername] = useState("");
 
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
@@ -46,31 +46,31 @@ function Signup() {
   const togglePasswordVisibility1 = () => setPasswordVisible1(!passwordVisible1);
   const togglePasswordVisibility2 = () => setPasswordVisible2(!passwordVisible2);
 
-  const handleSubmit=async (e)=> {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if(!validateEmail(email)){
+    if (!validateEmail(email)) {
       setEmailError("Please enter a valid email address")
-      return ;
+      return;
     }
-    if(!validatePassword(password1)){
+    if (!validatePassword(password1)) {
       setPassword1("Please enter a valid password")
-      return ;
+      return;
     }
-    if(password1!==password2){
+    if (password1 !== password2) {
       setPasswordNotMatch("Password do not match")
-      return ;
+      return;
     }
 
-    try{
-      const response =await axios.post("http://localhost:3000/api/users",
+    try {
+      const response = await axios.post("http://localhost:3000/api/users",
         {
-          username:username,
-          email:email,
-          password:password1
+          username: username,
+          email: email,
+          password: password1
         });
-        console.log("Success",response.data);
+      console.log("Success", response.data);
 
-    }catch(error){
+    } catch (error) {
       console.error("sign up failed")
       alert("Sign up failed. Please try again")
     }
@@ -80,8 +80,7 @@ function Signup() {
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
         <h2 className="text-2xl font-bold text-gray-700 text-center mb-6">Create Your Account</h2>
         <form className="space-y-4" onSubmit={handleSubmit}>
-
-        <div>
+          <div>
             <label htmlFor="username" className="block text-sm font-medium text-gray-600 mb-1">
               Username
             </label>
@@ -90,11 +89,9 @@ function Signup() {
               id="username"
               value={username}
               onChange={handleUsernameChange}
-              className={`w-full px-4 py-2 border ${
-                emailError ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-blue-500"
-              } rounded-lg`}
-              placeholder="Enter your username"
-            />
+              className={`w-full px-4 py-2 border ${emailError ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-blue-500"
+                } rounded-lg`}
+              placeholder="Enter your username" />
           </div>
 
           <div>
@@ -106,11 +103,9 @@ function Signup() {
               id="email"
               value={email}
               onChange={handleEmailChange}
-              className={`w-full px-4 py-2 border ${
-                emailError ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-blue-500"
-              } rounded-lg`}
-              placeholder="Enter your email"
-            />
+              className={`w-full px-4 py-2 border ${emailError ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-blue-500"
+                } rounded-lg`}
+              placeholder="Enter your email" />
             <p className="text-sm text-red-500 mt-1">{emailError}</p>
           </div>
           <div>
@@ -124,13 +119,11 @@ function Signup() {
                 value={password1}
                 onChange={handlePassword1Change}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter your password"
-              />
+                placeholder="Enter your password" />
               <button
                 type="button"
                 onClick={togglePasswordVisibility1}
-                className="absolute inset-y-0 right-3 flex items-center text-gray-600"
-              >
+                className="absolute inset-y-0 right-3 flex items-center text-gray-600">
                 <FontAwesomeIcon icon={passwordVisible1 ? faEyeSlash : faEye} />
               </button>
             </div>
@@ -147,13 +140,11 @@ function Signup() {
                 value={password2}
                 onChange={handlePassword2Change}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                placeholder="Confirm your password"
-              />
+                placeholder="Confirm your password" />
               <button
                 type="button"
                 onClick={togglePasswordVisibility2}
-                className="absolute inset-y-0 right-3 flex items-center text-gray-600"
-              >
+                className="absolute inset-y-0 right-3 flex items-center text-gray-600">
                 <FontAwesomeIcon icon={passwordVisible2 ? faEyeSlash : faEye} />
               </button>
             </div>
@@ -161,8 +152,7 @@ function Signup() {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition"
-          >
+            className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition">
             Sign Up
           </button>
         </form>
