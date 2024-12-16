@@ -1,14 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import AppRoutes from "./routes/Routes";
-import Header from "./components/Header"
+import Header from "./components/Header";
 
 function App() {
   return (
     <Router>
-      <div>
-        <Header/>
-        <AppRoutes />
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <div className="flex-grow">
+          <AppRoutes />
+        </div>
       </div>
     </Router>
   );
