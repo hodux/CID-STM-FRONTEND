@@ -32,7 +32,7 @@ function SignIn() {
     }
 
   return (
-    <div className="bg-blue-400 h-screen w-screen self-center items-center p-5 flex">
+    <div className="bg-blue-400 h-screen self-center items-center p-5 flex">
         <form className='border-8 p-8 rounded-2xl m-8 bg-white border-white h-4/8 w-2/4 mx-auto shadow-xl shadow-blue-700' onSubmit={handleSubmit}>
             <div className="flex flex-col h-full">
                 <h1 className='text-4xl text-center'>Login</h1>
