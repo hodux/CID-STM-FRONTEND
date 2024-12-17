@@ -1,17 +1,23 @@
 import React, {useEffect, useState} from "react";
 import BarChart from "../components/BarChart";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 const MaxSequencesChart = () => {
-
+    const navigate = useNavigate();
     const baseUrl = "https://localhost:3001/api/trips/maxSequences";
     const [data, setData] = useState([]);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
     useEffect( () => {
         const fetchData = async () => {
             try{
-                await axios.get(baseUrl)
+                let token = localStorage.getItem('token');
+                if(token == null || token === ""){
+                }else{
+                    setIsAuthenticated(true);
+                }
+                await axios.get(baseUrl,{ headers: {"Authorization" : `Bearer ${token}`} } )
                     .then(res => {
                         setData(res.data)
-                        console.log(res.data)
                     })
                     .catch(err => console.log(err));
             }catch (error){
@@ -19,7 +25,7 @@ const MaxSequencesChart = () => {
             }
         }
         fetchData()
-    }, [])
+    }, [navigate, isAuthenticated])
     data.map((trip) => {
         console.log(trip)
     })
