@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import {useNavigate} from 'react-router-dom'
+
+import axios from "axios";
+
+const baseURL = "https://localhost:3001/api/login"
 
 function SignIn() {
+    const navigate = useNavigate();
     const [login, setLogin] = useState({
-        usernameOrEmail: "",
+        email: "",
         password: "",
     });
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -19,25 +25,30 @@ function SignIn() {
         setPasswordVisible(!passwordVisible);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!login.usernameOrEmail || !login.password) {
+        if (!login.email || !login.password) {
             setError("Please fill in all fields.");
             return;
         }
 
         setError("");
         const userData = {
-            usernameOrEmail:login.usernameOrEmail[0],
-            password:login.password[0]
+            email: login.email,
+            password: login.password
         }
-        console.log(userData);
-        // axios.post(baseURL, userData, {
-        //   headers: { 'Content-Type': 'application/json' },
-        // })
-        // .then((res) => console.log(res.status, res.data))
-        // .catch((err) => console.error(err));
+        try {
+            const response = await axios.post(baseURL, userData);
+            localStorage.setItem('token', response.data.token);
+            if(localStorage.getItem('token')){
+                navigate('/');
+            }
+
+        } catch (err) {
+            setError("Invalid login credentials. Please try again.");
+            console.error("Error occured", err);
+        }
     };
 
     return (
@@ -53,12 +64,12 @@ function SignIn() {
                         </label>
                         <input
                             type="text"
-                            id="usernameOrEmail"
-                            name="usernameOrEmail"
-                            value={login.usernameOrEmail}
+                            id="email"
+                            name="email"
+                            value={login.email}
                             onChange={handleChange}
                             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                            placeholder="Enter your username or email" />
+                            placeholder="Enter your email" />
                     </div>
                     <div>
                         <label htmlFor="password" className="block text-sm font-medium text-gray-600 mb-1">

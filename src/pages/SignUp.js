@@ -62,12 +62,13 @@ function Signup() {
     }
 
     try {
-      const response = await axios.post("http://localhost:3000/api/users",
+      const response = await axios.post("https://localhost:3001/api/users",
         {
           username: username,
           email: email,
           password: password1
-        });
+        }
+      );
       console.log("Success", response.data);
 
     } catch (error) {

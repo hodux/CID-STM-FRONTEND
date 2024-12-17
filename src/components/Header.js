@@ -1,17 +1,32 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import logo from "../images/stm.png";
-
+import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 function Header() {
+    const navigate = useNavigate();
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    useEffect(() => {
+        const checkToken = () => {
+            let token = localStorage.getItem('token');
+            if(token == null || token === ""){
+                console.log(isAuthenticated);
+            }else{
+                setIsAuthenticated(true);
+                console.log(isAuthenticated);
+            }
+        }
+        checkToken();
+    }, [navigate]);
   return (
     <header className="flex items-center justify-between bg-gray-900 p-4 fixed top-0 w-full z-10">
       <div className="flex">
-        <a href="/"><img src={logo} alt="CID" className="h-8 w-15 mr-5" /></a>
-        <a href="/" className="text-white hover:underline py-2">Home</a>
+        <Link to="/"><img src={logo} alt="CID" className="h-8 w-15 mr-5" /></Link>
+        <Link to="/" className="text-white hover:underline py-2">Home</Link>
       </div>
-       {/* add if ternaire if signed up = true, show profile if false show sign in sign up */}
+
       <div className="flex space-x-5">
-        <a href="/signin" className="text-white hover:underline">Sign in</a>
-        <a href="/signup" className="text-white hover:underline">Sign up</a>
+        <Link to="/signin" className="text-white hover:underline">Sign in</Link>
+        <Link to="/signup" className="text-white hover:underline">Sign up</Link>
       </div>
     </header>
   );
