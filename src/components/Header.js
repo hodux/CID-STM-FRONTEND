@@ -16,7 +16,7 @@ function Header() {
             }
         }
         checkToken();
-    }, [navigate]);
+    }, [navigate, isAuthenticated]);
   return (
     <header className="flex items-center justify-between bg-gray-900 p-4 fixed top-0 w-full z-10">
       <div className="flex">
@@ -25,6 +25,10 @@ function Header() {
       </div>
 
       <div className="flex space-x-5">
+        {
+            isAuthenticated ?
+                <Link to="/maxsequenceschart" className="text-white hover:underline">Stops chart</Link> : null
+        }
         <Link to="/signin" className="text-white hover:underline">Sign in</Link>
         <Link to="/signup" className="text-white hover:underline">Sign up</Link>
       </div>
