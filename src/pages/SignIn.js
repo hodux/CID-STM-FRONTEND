@@ -29,9 +29,9 @@ function SignIn() {
 
         setError("");
         const userData = {
-            usernameOrEmail: login.usernameOrEmail,
-            password: login.password,
-        };
+            usernameOrEmail:login.usernameOrEmail[0],
+            password:login.password[0]
+        }
         console.log(userData);
         // axios.post(baseURL, userData, {
         //   headers: { 'Content-Type': 'application/json' },
