@@ -12,6 +12,7 @@ const MaxSequencesChart = () => {
             try{
                 let token = localStorage.getItem('token');
                 if(token == null || token === ""){
+                    navigate('/signin');
                 }else{
                     setIsAuthenticated(true);
                 }
