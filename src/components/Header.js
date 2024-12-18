@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../images/stm.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
@@ -48,12 +48,17 @@ function Header() {
       window.location.reload(); 
     }
 
+
   return (
     <>
     <header className="flex items-center justify-between bg-gray-900 p-4 fixed top-0 w-full z-10">
       <div className="flex">
-        <Link to="/"><img src={logo} alt="CID" className="h-8 w-15 mr-5" /></Link>
-        <Link to="/" className="text-white hover:underline py-2">Home</Link>
+        <Link to="/">
+          <img src={logo} alt="CID" className="h-8 w-15 mr-5" />
+        </Link>
+        <Link to="/" className="text-white hover:underline py-2">
+          Home
+        </Link>
       </div>
 
       <div className="flex space-x-5">
@@ -84,6 +89,7 @@ function Header() {
         </div>
         
         </div>
+
     </header>
     </>
   );

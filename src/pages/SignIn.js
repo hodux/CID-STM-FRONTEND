@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import {useNavigate} from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
-const baseURL = "https://localhost:3001/api/login"
+const baseURL = "https://localhost:3001/api/login";
 
 function SignIn() {
     const navigate = useNavigate();
     const [login, setLogin] = useState({
-        email: "",
+        identifier: "",
         password: "",
     });
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -28,14 +27,14 @@ function SignIn() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!login.email || !login.password) {
+        if (!login.identifier || !login.password) {
             setError("Please fill in all fields.");
             return;
         }
 
         setError("");
         const userData = {
-            email: login.email,
+            identifier: login.identifier,
             password: login.password
         }
         try {
@@ -58,18 +57,18 @@ function SignIn() {
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     <div>
                         <label
-                            htmlFor="email"
+                            htmlFor="identifier"
                             className="block text-sm font-medium text-gray-600 mb-1">
-                            Email
+                            Username or Email
                         </label>
                         <input
                             type="text"
-                            id="email"
-                            name="email"
-                            value={login.email}
+                            id="identifier"
+                            name="identifier"
+                            value={login.identifier}
                             onChange={handleChange}
                             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                            placeholder="Enter your email" />
+                            placeholder="Enter your username or email" />
                     </div>
                     <div>
                         <label htmlFor="password" className="block text-sm font-medium text-gray-600 mb-1">

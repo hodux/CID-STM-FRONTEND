@@ -11,14 +11,14 @@ const BarChart = ({ data }) => {
 
         // Create the bar chart using Observable Plot
         const chart = Plot.plot({
-            height:1000,
+            height: 650,
             width: 2000,
             marks: [
-                Plot.barY(data, { x: 'route_id', y: 'stop_sequence', fill: 'steelblue',title: d => `Bus: ${d.route_id}\nStops: ${d.stop_sequence}` }),
+                Plot.barY(data, { x: 'route_id', y: 'stop_sequence', fill: 'steelblue', title: d => `Bus: ${d.route_id}\nStops: ${d.stop_sequence}` }),
             ],
-            x: { label: 'Route ID',tickRotate: -90, tickPadding:5 } , // Customize x-axis
+            x: { label: 'Route ID', tickRotate: -90, tickPadding: 5 }, // Customize x-axis
             y: { label: 'Stop sequence' }, // Customize y-axis
-            style: { background: '#f9f9f9', fontSize: '12px',  },// Add custom styling
+            style: { background: '#f9f9f9', fontSize: '12px' }, // Add custom styling
         });
 
         // Append the chart to the container
