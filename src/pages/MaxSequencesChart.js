@@ -31,7 +31,7 @@ const MaxSequencesChart = () => {
         fetchData()
     }, [navigate, isAuthenticated]);
 
-    const filteredData = data.filter(trip => trip.route_id.includes(filter));
+    const filteredData =filter? data.filter(trip => trip.route_id===filter):data;
 
     return (
         <div className="h-screen p-5 bg-blue-400 flex flex-col items-center">
