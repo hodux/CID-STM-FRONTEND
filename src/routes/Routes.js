@@ -5,6 +5,7 @@ import Signin from "../pages/SignIn";
 import Signup from "../pages/SignUp";
 import MaxSequencesChart from "../pages/MaxSequencesChart"
 import FullTripTimeChart from "../pages/FullTripTimeChart";
+import SeatOccupancyChart from "../pages/SeatOccupancyChart";
 
 function AppRoutes() {
   return (
@@ -14,6 +15,7 @@ function AppRoutes() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/maxsequenceschart" element={<MaxSequencesChart />} />
       <Route path="/fullTripTimeChart" element={<FullTripTimeChart />} />
+      <Route path="/seat-chart" element={<SeatOccupancyChart />} />
     </RouterRoutes>
   );
 }

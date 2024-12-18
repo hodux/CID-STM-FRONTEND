@@ -66,7 +66,8 @@ function Header() {
         {
             isAuthenticated ? (
             <>
-                <Link to="/maxsequenceschart" className="text-white hover:underline mr-2">Stops chart</Link> 
+                <Link to="/seat-chart" className="text-white hover:underline mr-2">Seats chart</Link>
+                <Link to="/maxsequenceschart" className="text-white hover:underline mr-2">Stops chart</Link>
                 <Link to="/fullTripTimeChart" className="text-white hover:underline m">Trip time chart</Link> 
           </>
         ):null
