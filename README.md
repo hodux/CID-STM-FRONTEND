@@ -42,7 +42,6 @@ Le projet **CID** est une application Web conçue pour interagir avec les donné
   - **Installation des dépendances** : Assurez-vous que toutes les dépendances nécessaires sont installées en exécutant `npm install` dans le dossier backend et frontend.
   - **Lancement du service en production** : Utilisez `npm start` pour lancer l’application en production. Cela démarrera le backend et l’application React via un serveur HTTP sécurisé, accessible publiquement.
   - **Gestion des problèmes courants** : CORS (Cross-Origin Resource Sharing).
-  - 
 ---
 
 ## Fonctionnalités principales  
