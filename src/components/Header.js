@@ -26,8 +26,12 @@ function Header() {
 
       <div className="flex space-x-5">
         {
-            isAuthenticated ?
-                <Link to="/maxsequenceschart" className="text-white hover:underline">Stops chart</Link> : null
+            isAuthenticated ? (
+            <>
+                <Link to="/maxsequenceschart" className="text-white hover:underline">Stops chart</Link> 
+                <Link to="/fullTripTimeChart" className="text-white hover:underline">Trip time chart</Link> 
+          </>
+        ):null
         }
         <Link to="/signin" className="text-white hover:underline">Sign in</Link>
         <Link to="/signup" className="text-white hover:underline">Sign up</Link>
