@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -17,6 +18,8 @@ function Signup() {
   const [passwordVisible2, setPasswordVisible2] = useState(false);
 
   const [signupErrorMessage, setSignupErrorMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
@@ -70,7 +73,7 @@ function Signup() {
         password: password1
       });
       console.log("Success", response.data);
-
+      navigate("/signin");
     } catch (error) {
       if (error.response && error.response.status === 409) {
           setSignupErrorMessage("Account with this email or username already exists.");

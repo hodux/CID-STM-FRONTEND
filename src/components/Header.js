@@ -41,12 +41,12 @@ function Header() {
 
 
     const handleSignOut = () => {
-      setIsAuthenticated(false)
+      setIsAuthenticated(false);
       truth = false;
-      setShowSignOut(false)
-      let token = localStorage.getItem('token');
+      setShowSignOut(false);
+      localStorage.removeItem('token'); 
       window.location.reload(); 
-    }
+    };
 
 
   return (
@@ -66,8 +66,8 @@ function Header() {
         {
             isAuthenticated ? (
             <>
-                <Link to="/maxsequenceschart" className="text-white hover:underline">Stops chart</Link> 
-                <Link to="/fullTripTimeChart" className="text-white hover:underline">Trip time chart</Link> 
+                <Link to="/maxsequenceschart" className="text-white hover:underline mr-2">Stops chart</Link> 
+                <Link to="/fullTripTimeChart" className="text-white hover:underline m">Trip time chart</Link> 
           </>
         ):null
         }
