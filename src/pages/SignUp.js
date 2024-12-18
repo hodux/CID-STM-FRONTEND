@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
+
 function Signup() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -15,6 +16,7 @@ function Signup() {
   const [passwordVisible1, setPasswordVisible1] = useState(false);
   const [passwordVisible2, setPasswordVisible2] = useState(false);
 
+  const [signupErrorMessage, setSignupErrorMessage] = useState("");
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
@@ -49,31 +51,33 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateEmail(email)) {
-      setEmailError("Please enter a valid email address")
+      setEmailError("Please enter a valid email address");
       return;
     }
     if (!validatePassword(password1)) {
-      setPassword1("Please enter a valid password")
+      setPasswordError("Password must be at least 8 characters, include a number, a letter, and a special character.");
       return;
     }
     if (password1 !== password2) {
-      setPasswordNotMatch("Password do not match")
+      setPasswordNotMatch("Passwords do not match");
       return;
     }
 
     try {
-      const response = await axios.post("https://localhost:3001/api/users",
-        {
-          username: username,
-          email: email,
-          password: password1
-        }
-      );
+      const response = await axios.post("https://localhost:3001/api/users", {
+        username: username,
+        email: email,
+        password: password1
+      });
       console.log("Success", response.data);
 
     } catch (error) {
-      console.error("sign up failed")
-      alert("Sign up failed. Please try again")
+      if (error.response && error.response.status === 409) {
+          setSignupErrorMessage("Account with this email or username already exists.");
+      } else {
+          console.error("Sign up failed", error);
+          setSignupErrorMessage("Sign up failed. Please try again.");
+      }
     }
   }
   return (
@@ -151,17 +155,17 @@ function Signup() {
             </div>
             <p className="text-sm text-red-500 mt-1">{passwordNotMatch}</p>
           </div>
+          <div> 
+            <p className="text-sm text-red-500 mt-1 mb-4">{signupErrorMessage}</p>
+          </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition">
-            Sign Up
-          </button>
+            className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition">Sign Up
+            </button>
         </form>
         <p className="text-sm text-gray-500 text-center mt-4">
           Already have an account?{" "}
-          <a href="/signin" className="text-blue-500 hover:underline">
-            Sign in
-          </a>
+          <a href="/signin" className="text-blue-500 hover:underline">Sign in</a>
         </p>
       </div>
     </div>
