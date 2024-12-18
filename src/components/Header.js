@@ -75,7 +75,7 @@ function Header() {
         </div>
         <div>
           {showSignOut ? 
-            <Link to="/signin" className="text-white hover:underline" onClick={handleSignOut}>Sign Out</Link>: null
+            <Link to="/signin" className="text-red-600 hover:underline text-sm" onClick={handleSignOut}>Sign Out</Link>: null
           }
         </div>
         
