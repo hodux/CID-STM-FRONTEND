@@ -42,7 +42,7 @@ function SignIn() {
             const response = await axios.post(baseURL, userData);
             localStorage.setItem('token', response.data.token);
             if(localStorage.getItem('token')){
-                navigate('/');
+                navigate('/', {state: {truth: true}});
             }
 
         } catch (err) {
