@@ -7,7 +7,6 @@
 #### - MODÈLE UTILISÉ -- MVC
 ## LISTE DE LIBRAIRIES: 
   #### - FONT AWESOME
-  #### - Observable Plot
 
 
 
