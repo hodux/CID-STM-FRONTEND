@@ -79,6 +79,7 @@ Les librairies utilisées pour le développement du backend sont :
 - **swagger**
 - **ts-node**
 - **winston**
+- **typescript**
   
 ---
 
