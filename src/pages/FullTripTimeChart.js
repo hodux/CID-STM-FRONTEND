@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
-import BarChartTrip from "../components/BarChartTrips";
+import BarChartTrip from "../components/TripsChart";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import TripsChart from "../components/TripsChart";
 const FullTripTimeChart = () => {
     const navigate = useNavigate();
     const baseUrl = "https://localhost:3001/api/trips/duration";
@@ -31,7 +32,7 @@ const FullTripTimeChart = () => {
     }, [navigate, isAuthenticated])
     const filteredData = (!busFilter && durationMinimumFilter===0)? data: 
     data.filter((trip) => {
-        const matchesBus = !busFilter || trip.routeId==busFilter; 
+        const matchesBus = !busFilter || trip.routeId===busFilter; 
         const matchesDuration = durationMinimumFilter ===0 || trip.duration >= durationMinimumFilter;
         return matchesBus && matchesDuration; 
     });    
@@ -58,7 +59,7 @@ const FullTripTimeChart = () => {
                     className="border p-2 rounded"
                 />
             </div>
-            <BarChartTrip data={filteredData} />
+            <TripsChart data={filteredData} />
         </div>
 
     )

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as Plot from '@observablehq/plot';
 
-const BarChartTrip = ({ data }) => {
+const TripsChart = ({ data }) => {
     const chartRef2 = useRef(null);
 
     useEffect(() => {
@@ -29,4 +29,4 @@ const BarChartTrip = ({ data }) => {
     return <div ref={chartRef2}></div>;
 };
 
-export default BarChartTrip;
+export default TripsChart;
