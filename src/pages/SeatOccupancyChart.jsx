@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
-import BarChart from "../components/BarChart";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import * as Plot from "@observablehq/plot";
 import SeatChart from "../components/SeatChart";
 
 const SeatOccupancyChart = () => {
     const navigate = useNavigate();
     const baseUrl = `https://localhost:3001/api/seats`;
     const [data, setData] = useState([]);
-    const [filter, setFilter] = useState("");
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
@@ -31,7 +28,7 @@ const SeatOccupancyChart = () => {
             }
         }
         fetchData()
-    }, [navigate, isAuthenticated]);
+    }, [navigate, isAuthenticated, baseUrl]);
 
     return (
         <div className="h-screen p-6 bg-blue-400 flex flex-col items-center">
